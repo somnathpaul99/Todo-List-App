@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import TodoList from "./TodoList";
 import "../Styles/Todo.css";
 
@@ -6,8 +6,22 @@ function Todo() {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [editingId, setEditingId] = useState(null);
+  const inputRef = useRef(null);
   //   console.log(todos);
   //   console.log(editingId);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("todos-list");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (todos.length !== 0) {
+      localStorage.setItem("todos-list", JSON.stringify(todos));
+    }
+  }, [todos]);
 
   const handleInput = (event) => {
     setInput(event.target.value);
@@ -37,16 +51,25 @@ function Todo() {
 
   const handleEditTodo = (id) => {
     const todoToEdit = todos.find((todo) => todo.id === id);
-    setInput(todoToEdit.text);
-    setEditingId(id);
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, isEdit: true } : todo
-    );
-    setTodos(updatedTodos);
+
+    console.log(todoToEdit);
+    if (todoToEdit.completed !== true) {
+      setInput(todoToEdit.text);
+      setEditingId(id);
+      const updatedTodos = todos.map((todo) =>
+        todo.id === id ? { ...todo, isEdit: true } : todo
+      );
+      setTodos(updatedTodos);
+      inputRef.current.focus();
+    }
   };
 
   const handleDeleteTodo = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
+    if (updatedTodos.length === 0) {
+      localStorage.removeItem("todos-list");
+    }
+    console.log(updatedTodos);
     setTodos(updatedTodos);
   };
 
@@ -68,6 +91,7 @@ function Todo() {
             value={input}
             placeholder="Add todos..."
             onChange={handleInput}
+            ref={inputRef}
           />
           <button className="add-button" onClick={handleAddTodo}>
             Add
