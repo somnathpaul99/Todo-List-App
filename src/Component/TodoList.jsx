@@ -5,6 +5,7 @@ function TodoList({
   handleEditTodo,
   handleDeleteTodo,
   handleToggleTodo,
+  dayNight,
 }) {
   return (
     <ul className="todo-list">
@@ -18,6 +19,7 @@ function TodoList({
             handleEditTodo={handleEditTodo}
             handleDeleteTodo={handleDeleteTodo}
             handleToggleTodo={handleToggleTodo}
+            dayNight={dayNight}
           />
         ))}
     </ul>

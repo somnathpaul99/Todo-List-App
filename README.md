@@ -56,7 +56,7 @@ To get started with the Todo-List-App, follow these steps:
 
 - To update a task, click the "Edit" button below to the task you want to edit. for Update click on "Update".
 
-- To mark a task as completed or incompleted, click the completed or incompleted button below to the task.
+- To mark a task as completed or incompleted, click the Mark as done or completed button below to the task.
 
 - To delete a task, click the "Delete" button below to the task.
 

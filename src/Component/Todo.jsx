@@ -130,6 +130,11 @@ function Todo() {
             placeholder="Add todos..."
             onChange={handleInput}
             ref={inputRef}
+            style={
+              dayNight
+                ? { backgroundColor: "#3e434e", color: "white", border: "none" }
+                : {}
+            }
           />
           <button
             className="add-button"
@@ -137,7 +142,7 @@ function Todo() {
             style={
               dayNight
                 ? {
-                    backgroundColor: "lightgreen",
+                    backgroundColor: "green",
                     color: "black",
                     fontWeight: "600",
                   }
@@ -153,6 +158,7 @@ function Todo() {
           handleEditTodo={handleEditTodo}
           handleDeleteTodo={handleDeleteTodo}
           handleToggleTodo={handleToggleTodo}
+          dayNight={dayNight}
         />
       </div>
     </div>

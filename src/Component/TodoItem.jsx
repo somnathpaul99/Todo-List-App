@@ -3,9 +3,22 @@ function TodoItem({
   handleEditTodo,
   handleDeleteTodo,
   handleToggleTodo,
+  dayNight,
 }) {
   return (
-    <li className="todo-items">
+    <li
+      className="todo-items"
+      style={
+        dayNight
+          ? {
+              color: "white",
+              backgroundColor: "#272829",
+              border: "1px solid white",
+              fontWeight: "500",
+            }
+          : {}
+      }
+    >
       {todo.completed ? (
         <span className="output-text-compelete"> {todo.text}</span>
       ) : todo.isEdit ? (
@@ -21,7 +34,7 @@ function TodoItem({
           }
           onClick={() => handleToggleTodo(todo.id)}
         >
-          {todo.completed ? "Completed" : "incomplete"}
+          {todo.completed ? "Completed" : "Mark as done"}
         </button>
         <button
           className="button-edit btn"

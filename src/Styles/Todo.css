@@ -22,11 +22,11 @@
 
 .todo-container-toggle {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #3e434e;
+  background-color: #30333a;
   padding-top: 40px;
   position: relative;
 }
@@ -99,25 +99,25 @@ ul {
 }
 
 .button-toggle:hover {
-  background-color: rgb(159, 34, 78);
+  background-color: red;
 }
 
 .button-toggle-done {
-  background-color: #316363;
+  background-color: green;
   color: white;
 }
 
 .button-toggle-done:hover {
-  background-color: #478080;
+  background-color: rgb(31, 189, 31);
 }
 
 .button-edit {
-  background-color: rgb(131, 13, 60);
+  background-color: rgb(128, 10, 10);
   color: white;
 }
 
 .button-edit:hover {
-  background-color: rgb(117, 45, 161);
+  background-color: red;
 }
 
 .button-delete {
