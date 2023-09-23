@@ -21,7 +21,7 @@ function TodoItem({
           }
           onClick={() => handleToggleTodo(todo.id)}
         >
-          {todo.completed ? "Incomplete" : "Complete"}
+          {todo.completed ? "Completed" : "incomplete"}
         </button>
         <button
           className="button-edit btn"

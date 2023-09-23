@@ -8,15 +8,18 @@ function TodoList({
 }) {
   return (
     <ul className="todo-list">
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          handleEditTodo={handleEditTodo}
-          handleDeleteTodo={handleDeleteTodo}
-          handleToggleTodo={handleToggleTodo}
-        />
-      ))}
+      {todos
+        .slice()
+        .reverse()
+        .map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            handleEditTodo={handleEditTodo}
+            handleDeleteTodo={handleDeleteTodo}
+            handleToggleTodo={handleToggleTodo}
+          />
+        ))}
     </ul>
   );
 }

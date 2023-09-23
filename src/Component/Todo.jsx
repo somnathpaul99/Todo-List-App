@@ -1,14 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import TodoList from "./TodoList";
 import "../Styles/Todo.css";
+import {
+  BsFillSunFill,
+  BsFillMoonStarsFill,
+  BsToggle2On,
+  BsToggle2Off,
+} from "react-icons/bs";
 
 function Todo() {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [editingId, setEditingId] = useState(null);
+  const [dayNight, setDayNight] = useState(false);
   const inputRef = useRef(null);
   //   console.log(todos);
   //   console.log(editingId);
+  // console.log(dayNight);
 
   useEffect(() => {
     const storedTodos = localStorage.getItem("todos-list");
@@ -78,13 +86,43 @@ function Todo() {
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
     setTodos(updatedTodos);
+    setInput("");
+  };
+
+  const handleToggleDayNight = () => {
+    setDayNight(!dayNight);
   };
 
   return (
-    <div className="todo-container">
-      <h1>Todo List App</h1>
+    <div className={dayNight ? "todo-container-toggle" : "todo-container"}>
+      <h1 style={dayNight ? { color: "white" } : {}}>Todo List App</h1>
 
-      <div className="output-container">
+      <div className="toggle-day-night">
+        <div>
+          {dayNight ? (
+            <span style={{ color: "white" }}>
+              <BsFillSunFill />{" "}
+            </span>
+          ) : (
+            <BsFillMoonStarsFill />
+          )}
+        </div>
+
+        <div onClick={handleToggleDayNight} className="toggleButtonDayNight">
+          {dayNight ? (
+            <span style={{ color: "white" }}>
+              <BsToggle2On />
+            </span>
+          ) : (
+            <BsToggle2Off />
+          )}
+        </div>
+      </div>
+
+      <div
+        className="output-container"
+        style={dayNight ? { backgroundColor: "black" } : {}}
+      >
         <div>
           <input
             type="text"
@@ -93,8 +131,20 @@ function Todo() {
             onChange={handleInput}
             ref={inputRef}
           />
-          <button className="add-button" onClick={handleAddTodo}>
-            Add
+          <button
+            className="add-button"
+            onClick={handleAddTodo}
+            style={
+              dayNight
+                ? {
+                    backgroundColor: "lightgreen",
+                    color: "black",
+                    fontWeight: "600",
+                  }
+                : {}
+            }
+          >
+            {editingId ? "Update" : "Add"}
           </button>
         </div>
 
