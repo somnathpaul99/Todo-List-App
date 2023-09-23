@@ -6,14 +6,35 @@ function TodoItem({
 }) {
   return (
     <li className="todo-items">
-      <span>{todo.text}</span>
+      {todo.completed ? (
+        <span className="output-text-compelete"> {todo.text}</span>
+      ) : todo.isEdit ? (
+        <span className="output-text-edit">{todo.text}</span>
+      ) : (
+        <span className="output-text">{todo.text}</span>
+      )}
 
-      <div>
-        <button onClick={() => handleToggleTodo(todo.id)}>
+      <div className="button-container">
+        <button
+          className={
+            todo.completed ? "button-toggle-done btn" : "button-toggle btn"
+          }
+          onClick={() => handleToggleTodo(todo.id)}
+        >
           {todo.completed ? "Incomplete" : "Complete"}
         </button>
-        <button onClick={() => handleEditTodo(todo.id)}>Edit</button>
-        <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+        <button
+          className="button-edit btn"
+          onClick={() => handleEditTodo(todo.id)}
+        >
+          Edit
+        </button>
+        <button
+          className="button-delete btn"
+          onClick={() => handleDeleteTodo(todo.id)}
+        >
+          Delete
+        </button>
       </div>
     </li>
   );

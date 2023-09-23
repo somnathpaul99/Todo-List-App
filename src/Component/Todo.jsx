@@ -19,7 +19,7 @@ function Todo() {
     }
     if (editingId !== null) {
       const updatedTodos = todos.map((todo) =>
-        todo.id === editingId ? { ...todo, text: input, editing: false } : todo
+        todo.id === editingId ? { ...todo, text: input, isEdit: false } : todo
       );
       setTodos(updatedTodos);
       setEditingId(null);
@@ -28,6 +28,7 @@ function Todo() {
         id: Date.now(),
         text: input,
         completed: false,
+        isEdit: false,
       };
       setTodos([...todos, newTodoItem]);
     }
@@ -38,6 +39,10 @@ function Todo() {
     const todoToEdit = todos.find((todo) => todo.id === id);
     setInput(todoToEdit.text);
     setEditingId(id);
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, isEdit: true } : todo
+    );
+    setTodos(updatedTodos);
   };
 
   const handleDeleteTodo = (id) => {
@@ -55,22 +60,27 @@ function Todo() {
   return (
     <div className="todo-container">
       <h1>Todo List App</h1>
-      <div>
-        <input
-          type="text"
-          value={input}
-          placeholder="Add todos..."
-          onChange={handleInput}
-        />
-        <button onClick={handleAddTodo}>Add</button>
-      </div>
 
-      <TodoList
-        todos={todos}
-        handleEditTodo={handleEditTodo}
-        handleDeleteTodo={handleDeleteTodo}
-        handleToggleTodo={handleToggleTodo}
-      />
+      <div className="output-container">
+        <div>
+          <input
+            type="text"
+            value={input}
+            placeholder="Add todos..."
+            onChange={handleInput}
+          />
+          <button className="add-button" onClick={handleAddTodo}>
+            Add
+          </button>
+        </div>
+
+        <TodoList
+          todos={todos}
+          handleEditTodo={handleEditTodo}
+          handleDeleteTodo={handleDeleteTodo}
+          handleToggleTodo={handleToggleTodo}
+        />
+      </div>
     </div>
   );
 }
