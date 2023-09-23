@@ -4,6 +4,10 @@
 
 A responsive Todo List web application built with React and Vite, featuring functionality to add, update, delete, and also can mark complete tasks. Local storage is used to preserve data across sessions. Additionally, you can toggle between day and night themes.
 
+## This Web App is Up and Running
+
+**URL-** https://todo-list-app-somnath.netlify.app/
+
 ## Features
 
 - User-responsive design for seamless use on all devices.
